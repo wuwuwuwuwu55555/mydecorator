@@ -1,0 +1,32 @@
+def decorator(func):
+    def restructure(*x):
+        func(*x)
+        print('this is decorator')
+    return restructure
+
+@decorator
+def target(x):
+    print('this is target %s'%x)
+
+@decorator
+def newtarget(x,y):
+    print('this is target %s%s'%(x,y))
+
+target('!')
+newtarget('!','?')
+
+print('----------分割-----------')
+
+def newdecorator(i):
+    def decorator(func):
+        def restructure(x):
+            func(x)
+            print('this is decorator %s%s'%(i,x))
+        return restructure
+    return decorator
+
+@newdecorator('?')
+def target(x):
+    print('this is target %s'%x)
+
+target('!')
